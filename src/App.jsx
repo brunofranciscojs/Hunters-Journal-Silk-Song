@@ -3,7 +3,6 @@ import Arrow from './components/arrowIcon';
 import Loading from './components/Loading';
 const apiURL1 = import.meta.env.VITE_API_URL1
 const apiURL2 = import.meta.env.VITE_API_URL2
-import ConveyThis from './components/ConveryThis';
 
 function App() {
   const [enemies, setEnemies] = useState([])
@@ -99,7 +98,7 @@ function App() {
 
   return (
     <>
-    <ConveyThis />
+
       <main className='flex gap-8 w-full lg:px-12 px-4 h-full items-center justify-center lg:flex-row flex-col relative'>
         <section className='flex flex-col justify-center items-center gap-5 lg:pt-20 pt-10'>
 
