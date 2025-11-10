@@ -1,23 +1,21 @@
-# 🦋 Hollow Knight Wiki - Interactive Enemy Database
+# Hornet's Hunter's Journal
 
-Uma aplicação web interativa que replica a estética do jogo Hollow Knight, fornecendo informações detalhadas sobre todos os inimigos do jogo através de uma interface imersiva e fiel ao design original.
+Uma aplicação web interativa que replica a estética do jogo Hollow Knight - Silk Song, fornecendo informações detalhadas sobre todos os inimigos do jogo através de uma interface imersiva e fiel ao design original.
 
 ![Hollow Knight](https://hollowknight.wiki/images/thumb/b/b2/Knight_Idle.png/200px-Knight_Idle.png)
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 Este projeto combina uma API customizada de web scraping com uma interface de usuário inspirada na estética sombria e atmosférica de Hollow Knight. A aplicação permite aos jogadores explorar informações detalhadas sobre os inimigos do jogo de forma visualmente atraente e intuitiva.
 
-### ✨ Características Principais
+### Características Principais
 
-- 🎮 **Interface Fiel ao Jogo**: Design inspirado na UI original de Hollow Knight
-- 🕷️ **Database Completa**: Informações sobre todos os inimigos do jogo
-- 📍 **Organização por Localização**: Inimigos agrupados por suas áreas de aparição
-- 🔍 **Detalhes Completos**: Stats, descrições, imagens e localizações
-- ⚡ **Performance Otimizada**: Cache inteligente e carregamento eficiente
-- 📱 **Responsivo**: Funciona perfeitamente em desktop e mobile
+-  **Interface Fiel ao Jogo**: Design inspirado na UI original de Hollow Knight
+-  **Database Completa**: Informações sobre todos os inimigos do jogo
+-  **Performance Otimizada**: Cache inteligente e carregamento eficiente
+-  **Responsivo**: Funciona perfeitamente em desktop e mobile
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Frontend
 - **React**: Biblioteca para construção da interface
@@ -30,7 +28,7 @@ Este projeto combina uma API customizada de web scraping com uma interface de us
 - **CORS**: Habilitação de requisições cross-origin
 - **Render.com**: Deployment e hospedagem da API
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 ### API de Web Scraping
 
@@ -75,9 +73,9 @@ Retorna detalhes completos de um inimigo específico, incluindo:
 ### Sistema de Cache
 
 A API implementa um sistema de cache em memória para:
-- ✅ Reduzir carga no servidor wiki
-- ✅ Melhorar tempo de resposta
-- ✅ Otimizar uso de recursos
+- Reduzir carga no servidor wiki
+- Melhorar tempo de resposta
+- Otimizar uso de recursos
 
 ### Extração Inteligente de Dados
 
@@ -92,7 +90,7 @@ A API utiliza técnicas avançadas de parsing para extrair informações:
 3. **Imagens**: CDN URLs otimizadas
 4. **Descrições**: Text mining de parágrafos específicos
 
-## 🚀 Deploy
+## Deploy
 
 ### API (Render.com)
 
@@ -129,7 +127,7 @@ O frontend pode ser deployado em:
 - GitHub Pages
 - Render.com
 
-## 💻 Instalação Local
+## Instalação Local
 
 ### Pré-requisitos
 
@@ -172,7 +170,7 @@ npm start
 # Aplicação rodando em http://localhost:3000
 ```
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 hollow-knight-wiki/
@@ -202,7 +200,7 @@ hollow-knight-wiki/
     └── package.json
 ```
 
-## 🎨 Design System
+## Design System
 
 ### Paleta de Cores
 
@@ -230,7 +228,7 @@ Inspirada na atmosfera sombria de Hallownest:
 - Efeitos de brilho e saturação
 - Layout responsivo inspirado no HUD do jogo
 
-## 🔄 Fluxo de Dados
+## Fluxo de Dados
 
 ```
 ┌─────────────┐
@@ -264,7 +262,7 @@ Inspirada na atmosfera sombria de Hallownest:
 └──────────────────┘
 ```
 
-## 📊 Features da API
+## Features da API
 
 ### Sistema de Localização Inteligente
 
@@ -285,7 +283,7 @@ Inimigos podem aparecer em várias áreas:
 // Tooltip mostra todas as localizações
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### API não responde
 
@@ -306,7 +304,7 @@ Certifique-se de que o frontend está configurado corretamente:
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 ```
 
-## 🤝 Contribuindo
+## Contribuindo
 
 Contribuições são bem-vindas! Por favor:
 
@@ -316,20 +314,19 @@ Contribuições são bem-vindas! Por favor:
 4. Push para a branch (`git push origin feature/NovaFeature`)
 5. Abra um Pull Request
 
-## 📝 Licença
+## Licença
 
 Este projeto é apenas para fins educacionais. Hollow Knight é propriedade da Team Cherry.
 
-## 🙏 Créditos
+## Créditos
 
 - **Team Cherry**: Criadores do Hollow Knight
 - **Hollow Knight Wiki**: Fonte de dados
 - **Comunidade**: Contribuidores e testers
 
-## 📧 Contato
+## Contato
 
 Para dúvidas ou sugestões, abra uma issue no GitHub.
 
 ---
-
-⚔️ *Feito com 🖤 por um fã de Hollow Knight*
+ *Feito com 🖤 por um fã de Hollow Knight*
