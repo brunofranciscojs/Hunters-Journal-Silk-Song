@@ -31,7 +31,7 @@ function App() {
       const details = await Promise.all(
         enemiesList.map(async (enemy) => {
           const res = await fetch(
-            `${apiURL}${enemy.slug}`
+            `${apiURL}/${enemy.slug}`
           );
           const detail = await res.json();
 
