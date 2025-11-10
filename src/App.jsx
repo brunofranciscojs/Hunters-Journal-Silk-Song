@@ -3,6 +3,7 @@ import Arrow from './components/arrowIcon';
 import Loading from './components/Loading';
 const apiURL1 = import.meta.env.VITE_API_URL1
 const apiURL2 = import.meta.env.VITE_API_URL2
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [enemies, setEnemies] = useState([])
@@ -167,6 +168,7 @@ function App() {
             })()}
         </section>
       </main>
+      <Analytics />
     </>
   )
 }
