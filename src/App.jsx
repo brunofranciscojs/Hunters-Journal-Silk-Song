@@ -75,24 +75,18 @@ function App() {
     );
   }
 
-  const ativar = (index) =>{
-    document.startViewTransition(() =>{
-      setActive(index);
-    })
-  }
-
   return (
     <>
-      <main className='hidden lg:flex gap-8 w-svw px-12 h-dvh items-end justify-center'>
-        <section className='flex flex-col justify-center items-center gap-5 pt-20'>
+      <main className='flex gap-8 w-svw lg:px-12 px-4 h-dvh items-end justify-center lg:flex-row flex-col'>
+        <section className='flex flex-col justify-center items-center gap-5 lg:pt-20 pt-75'>
 
           <Arrow className={'mx-auto block cursor-pointer z-50 relative'}/>
           
-          <div className='relative z-10'>
+          <div className='relative z-10 w-full'>
             <div className='h-20 bg-[linear-gradient(to_bottom,#242424_10%,transparent_100%)] absolute top-0 left-0 w-full z-10 pointer-events-none'></div>
-            <ul className="w-full h-full overflow-y-auto max-h-[590px] flex px-10 flex-wrap relative mx-auto justify-center items-center gap-y-10 z-0 [&::-webkit-scrollbar]:w-0.5 [&::-webkit-scrollbar-track]:bg-[#555]">
+            <ul className="w-full h-full overflow-y-auto lg:max-h-[590px] max-h-80 flex px-10 flex-wrap relative mx-auto justify-center items-center gap-y-10 z-0 [&::-webkit-scrollbar]:w-0.5 [&::-webkit-scrollbar-track]:bg-[#555]">
               {enemies.slice(1).map((enemy, key) => (
-                <li key={key} className={`w-1/3 relative cursor-pointer ${active === enemy.slug ? '[anchor-name:--active]' : ''}`} data-active={active === enemy.slug} onClick={() => ativar(enemy.slug)}>
+                <li key={key} className={`lg:w-1/3 w-2/12 relative cursor-pointer ${active === enemy.slug ? '[anchor-name:--active]' : ''}`} data-active={active === enemy.slug} onClick={() => setActive(enemy.slug)}>
                   <img  src={enemy.image} className='rounded-full w-20 h-20 border-3 border-white/80 block object-cover mx-auto' />
                 </li>
                 ))
@@ -104,7 +98,7 @@ function App() {
           <Arrow className={'mx-auto block scale-[1_-1] cursor-pointer z-50'}/>
         </section>
   
-        <section>
+        <section className='max-h-77 lg:max-h-[unset] min-h-77 lg:min-h-[unset]'>
             {active && (() => {
               const enemy = enemies.find(e => e.slug === active);
               return (
@@ -113,7 +107,7 @@ function App() {
                     src={enemy ? enemy.image : "https://cdn.wikimg.net/en/hkwiki/images/thumb/7/71/B_Skarrsinger_Karmelita.png/300px-B_Skarrsinger_Karmelita.png"}
                     key={enemy?.slug || "default"}
                     alt={enemy?.name || "default"}
-                    className={`block mx-auto w-auto relative min-w-84 z-10 ${enemy ? 'brightness-150 saturate-[1.5]' : ''}`}
+                    className={`block mx-auto w-auto relative lg:min-w-84 min-w-44 z-10 ${enemy ? 'brightness-150 saturate-[1.5]' : ''}`}
                   />
                   {enemy && (
                     <div
@@ -153,7 +147,6 @@ function App() {
             })()}
         </section>
       </main>
-      <span className='flex lg:hidden text-white text-3xl justify-center'>OPEN ON DESKTOP OR ON A SCREEN LARGER THAN 1024PX</span>
     </>
   )
 }
