@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Arrow from './components/arrowIcon';
 import Loading from './components/Loading';
+const apiURL = import.meta.VITE_API_URL
 
 function App() {
   const [enemies, setEnemies] = useState([])
@@ -23,14 +24,14 @@ function App() {
       setLoading(true);
       console.log("🌐 Buscando da API...");
 
-      const res = await fetch("https://silksong-api.onrender.com/api/enemies");
+      const res = await fetch(apiURL);
       const data = await res.json();
       const enemiesList = data.data;
 
       const details = await Promise.all(
         enemiesList.map(async (enemy) => {
           const res = await fetch(
-            `https://silksong-api.onrender.com/api/enemy/${enemy.slug}`
+            `${apiURL}${enemy.slug}`
           );
           const detail = await res.json();
 
