@@ -118,10 +118,10 @@ function App() {
       <main className='flex gap-8 w-full lg:px-12 px-2 h-full items-center justify-center lg:flex-row flex-col relative'>
         <section className='flex lg:flex-col flex-row justify-center items-center gap-5 lg:pt-20 pt-10'>
 
-          <Arrow className={'mx-auto block cursor-pointer z-50 lg:relative absolute left-0 lg:rotate-0 -rotate-90 scale-50 lg:scale-100'} onClick={() =>scrollPagination('<')}/>
+          <Arrow className={'mx-auto block cursor-pointer z-50 lg:relative absolute -left-10 lg:rotate-0 -rotate-90 scale-50 lg:scale-100'} onClick={() =>scrollPagination('<')}/>
           
           <div className='relative z-10 w-full after:content-[""] after:absolute after:right-0 after:top-0 after:h-full after:w-px after:bg-[linear-gradient(to_bottom,#5550,#555,#555,#5550)]'>
-            <div className='h-20 bg-[linear-gradient(to_bottom,#222_10%,transparent_100%)] absolute top-0 left-0 w-full z-10 pointer-events-none opacity-60 lg:opacity-100'></div>
+            <div className='h-20 bg-[linear-gradient(to_bottom,#222_10%,transparent_100%)] absolute top-0 left-0 w-full z-10 pointer-events-none opacity-60 lg:opacity-100 lg:flex hidden '></div>
             
             <ul className="mask-[linear-gradient(to_left,#0000,#000,#000,#0000)] lg:mask-[linear-gradient(to_left,#000,#000,#000,#000)] lg:overflow-x-hidden overflow-x-auto! py-12 grid lg:w-full grid-rows-2 grid-flow-col auto-cols-[100px] w-max max-w-full lg:h-full flex-row lg:overflow-y-auto overflow-y-hidden lg:max-h-[590px] max-h-[300px] whitespace-normal lg:flex px-10 flex-wrap relative mx-auto justify-center items-center gap-y-10 z-0 [&::-webkit-scrollbar]:w-0" ref={divRef}>
               {enemies.slice(1).map((enemy, key) => (
@@ -132,10 +132,10 @@ function App() {
               }
             </ul>
 
-            <div className='h-24 bg-[linear-gradient(to_top,#222_10%,transparent_100%)] absolute bottom-0 left-0 w-full z-10 pointer-events-none opacity-60 lg:opacity-100'></div>
+            <div className='h-24 bg-[linear-gradient(to_top,#222_10%,transparent_100%)] absolute bottom-0 left-0 w-full z-10 pointer-events-none opacity-60 lg:opacity-100 lg:flex hidden '></div>
           </div>
   
-          <Arrow className={'mx-auto block cursor-pointer z-50 lg:relative absolute right-0 lg:rotate-0 -rotate-90 scale-[.5_-.5] lg:scale-[1_-1]'} onClick={() =>scrollPagination('>')}/>
+          <Arrow className={'mx-auto block cursor-pointer z-50 lg:relative absolute -right-10 lg:rotate-0 -rotate-90 scale-[.5_-.5] lg:scale-[1_-1]'} onClick={() =>scrollPagination('>')}/>
         </section>
   
         <section className='max-h-120 lg:max-h-[unset] min-h-77 lg:min-h-[unset] relative h-dvh'>
@@ -156,7 +156,7 @@ function App() {
               if (!enemy) return null;
   
               return (
-                  <div className='place-content-center w-full mx-auto relative px-10 flex justify-between flex-col h-full py-12 gap-24 
+                  <div className='place-content-center w-full mx-auto relative lg:px-10 px-4 flex justify-between flex-col h-full py-12 gap-24 
                         after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[80%] after:-translate-y-1/2 after:w-px after:bg-[linear-gradient(to_bottom,#5550,#555,#555,#5550)]'>
                     <div>
                       <h2 className='font-bold text-4xl text-white text-center mb-7'>{enemy.name}</h2>
@@ -178,11 +178,11 @@ function App() {
             })()}
             
         </section>
-      </main>
-      <a className='flex items-center gap-4 justify-center absolute bottom-8 w-full text-gray-400 text-lg' 
+      <a className='flex items-center gap-4 justify-center absolute bottom-0 w-full text-gray-400 text-lg' 
         href='https://github.com/brunofranciscojs/Hunters-Journal-Silk-Song' target='_blank'>
           <GitHubIcon width={15} height={15} fill={'#99a1af'}/>see on github
       </a>
+      </main>
       <Analytics />
     </>
   )
