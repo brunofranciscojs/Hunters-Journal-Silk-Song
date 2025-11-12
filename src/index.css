@@ -54,9 +54,12 @@ section{
     nth-3:before:left-0
     nth-3:before:top-1/2
     nth-3:before:[translate:0_-50%]
-    nth-3:before:mask-linear-[to_bottom,transparent,black,black,transparent]
+    nth-3:before:mask-linear-[to_bottom,transparent,black,black,transparent];
 }
 
+li[data-visto="false"]{
+  @apply after:content-[''] after:h-3 after:w-3 after:bg-red-400 after:blur-[1px] after:rounded-full after:absolute after:left-8 after:top-2
+}
 svg{
   shape-rendering:geometricPrecision; 
   text-rendering:geometricPrecision; 
