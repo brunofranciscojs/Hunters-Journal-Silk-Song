@@ -5,13 +5,18 @@ import { Analytics } from '@vercel/analytics/react';
 import GitHubIcon from './components/GithubIcon';
 const apiURL1 = import.meta.env.VITE_API_URL1
 const apiURL2 = import.meta.env.VITE_API_URL2
+import { useGamepadForEnemies } from './components/UseGamePad';
+
+
+
 
 function App() {
   const [enemies, setEnemies] = useState([])
   const [active, setActive] = useState(localStorage.getItem('ativo'));
   const [loading, setLoading] = useState(true); 
   const divRef = useRef(null);
-  
+  const [play, setPlay] = useState(false);
+  const audioRef = useRef();
 
   useEffect(() => {
     const getEnemies = async () => {
@@ -80,9 +85,28 @@ function App() {
     }
     
     localStorage.setItem('vistos', JSON.stringify(existentes));
-    localStorage.setItem('ativo',slug)
+    localStorage.setItem('ativo',slug);
+
+    setPlay(true);
+    setTimeout(() => {
+      if (audioRef.current) {
+        const audio = audioRef.current;
+        audio.volume = 0.5;
+
+        audio.onended = () => {
+          audio.currentTime = 0;
+          setPlay(false);
+        };
+
+        audio.play(); // se quiser iniciar o som aqui
+      }
+    }, 100);
+
   }
 
+  useGamepadForEnemies({ enemies, active, setActive, divRef, ativar, setPlay});
+
+  
   const scrollPagination = (d) => {
     if (!divRef.current) return;
 
@@ -98,6 +122,8 @@ function App() {
       behavior: "smooth",
     });
   };
+
+  
 
  if (loading) {
     return (
@@ -120,6 +146,8 @@ function App() {
   
   return (
     <>
+      {play && <audio src="./src/assets/select.mp3" autoPlay controls className='absolute opacity-0' ref={audioRef}> </audio>}
+
       <main className='flex gap-8 w-full lg:px-12 px-2 h-full items-center justify-center lg:flex-row flex-col relative'>
         <section className='flex lg:flex-col flex-row justify-center items-center gap-5 lg:pt-20 pt-10'>
 
