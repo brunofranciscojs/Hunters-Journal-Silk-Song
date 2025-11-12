@@ -8,18 +8,21 @@ const apiURL2 = import.meta.env.VITE_API_URL2
 
 function App() {
   const [enemies, setEnemies] = useState([])
-  const [active,setActive] = useState('Lace');
+  const [active, setActive] = useState(localStorage.getItem('ativo'));
   const [loading, setLoading] = useState(true); 
   const divRef = useRef(null);
   
+
   useEffect(() => {
     const getEnemies = async () => {
+
       try {
         const EXPIRATION_TIME = 72 * 60 * 60 * 1000;
         const cachedData = localStorage.getItem("enemies");
         const cachedTime = localStorage.getItem("enemies_timestamp");
 
         if (cachedData && cachedTime && Date.now() - cachedTime < EXPIRATION_TIME) {
+          
           console.log("⚡ Usando cache local válido");
           setEnemies(JSON.parse(cachedData));
           return;
@@ -34,8 +37,8 @@ function App() {
 
         const details = await Promise.all(
         enemiesList.map(async (enemy) => {
-          try {
-            const res = await fetch(`${apiURL2}/${enemy.slug}`);
+
+          const res = await fetch(`${apiURL2}/${enemy.slug}`);
             const detail = await res.json();
 
             return {
@@ -45,16 +48,7 @@ function App() {
               hornetDescription: detail.hornetDescription || 'No description',
               location: detail.stats?.location || 'Various Places',
             };
-          } catch (error) {
-            console.error(`Erro ao buscar ${enemy.slug}:`, error);
-            return {
-              ...enemy,
-              image: null,
-              description: 'Error loading data',
-              hornetDescription: 'Error loading data',
-              location: 'Various Places',
-            };
-          }
+          
         })
       );
 
@@ -71,19 +65,22 @@ function App() {
 
   getEnemies();
 
+  if (!localStorage.getItem('ativo')) localStorage.setItem('ativo','Aknid');
+  setActive(localStorage.getItem('ativo'))
 }, []);
+
 
   const ativar = (slug,el) =>{
     el.scrollIntoView({behavior:'smooth',block:'center'})
     setActive(slug);
-
     const existentes = JSON.parse(localStorage.getItem('vistos')) || [];
-
+    
     if (!existentes.includes(slug)) {
       existentes.push(slug);
     }
-
+    
     localStorage.setItem('vistos', JSON.stringify(existentes));
+    localStorage.setItem('ativo',slug)
   }
 
   const scrollPagination = (d) => {
