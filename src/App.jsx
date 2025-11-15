@@ -152,17 +152,16 @@ function App() {
           
           <div className='relative z-10 w-full after:content-[""] after:absolute after:right-0 after:top-0 after:h-full after:w-px after:bg-[linear-gradient(to_bottom,#5550,#555,#555,#5550)]'>
             <div className='h-20 bg-[linear-gradient(to_bottom,#222_10%,transparent_100%)] absolute top-0 left-0 w-full z-10 pointer-events-none opacity-60 lg:opacity-100 lg:flex hidden '></div>
-            
-            <ul className="mask-[linear-gradient(to_left,#0000,#000,#000,#0000)] lg:mask-[linear-gradient(to_left,#000,#000,#000,#000)] gap-10 lg:overflow-x-hidden overflow-x-auto! py-12 grid lg:w-full grid-rows-2 grid-flow-col auto-cols-[100px] w-max max-w-full lg:h-full flex-row lg:overflow-y-auto overflow-y-hidden lg:max-h-[590px] max-h-[300px] whitespace-normal lg:flex px-10 flex-wrap relative mx-auto justify-center items-center gap-y-10 z-0 [&::-webkit-scrollbar]:w-0" ref={divRef}>
-              {enemies.slice(1).map((enemy, key) => (
-                <li key={key} data-visto={JSON.parse(localStorage.getItem('vistos') || '[]').includes(enemy.slug)} className={`w-auto min-w-[110px] lg:min-w-[unset] relative cursor-pointer hover:brightness-150 hover:saturate-150 hover:opacity-100 transition-all opacity-90`} 
-                    title={enemy.name} data-active={active === enemy.slug} onClick={(e) => ativar(enemy.slug,e.target)}>
-                  <img  src={enemy.image} className='rounded-full w-20 h-20 border-3 border-white/80 block object-cover mx-auto transition-all duration-200 object-top' />
-                </li>
-                ))
-              }
-            </ul>
-
+              <ul className="mask-[linear-gradient(to_left,#0000,#000,#000,#0000)] lg:mask-[linear-gradient(to_left,#000,#000,#000,#000)] gap-10 lg:overflow-x-hidden overflow-x-auto! py-12 grid lg:w-full grid-rows-2 grid-flow-col auto-cols-[100px] w-max max-w-full lg:h-full flex-row lg:overflow-y-auto overflow-y-hidden lg:max-h-[590px] max-h-[300px] whitespace-normal lg:flex px-10 flex-wrap relative mx-auto justify-center items-center gap-y-10 z-0 [&::-webkit-scrollbar]:w-0" ref={divRef}>
+                {enemies.slice(1).map((enemy, key) => (
+                  <li key={key} data-visto={JSON.parse(localStorage.getItem('vistos') || '[]').includes(enemy.slug)} 
+                      className={`w-auto min-w-[110px] lg:min-w-[unset] relative cursor-pointer hover:brightness-150 hover:saturate-150 hover:opacity-100 transition-all opacity-90`} 
+                      title={enemy.name} data-active={active === enemy.slug} onClick={(e) => ativar(enemy.slug,e.target)}>
+                    <img  src={enemy.image} className='rounded-full w-20 h-20 border-4 border-white/50 block object-cover mx-auto transition-all duration-200 object-top' />
+                  </li>
+                  ))
+                }
+              </ul>
             <div className='h-24 bg-[linear-gradient(to_top,#222_10%,transparent_100%)] absolute bottom-0 left-0 w-full z-10 pointer-events-none opacity-60 lg:opacity-100 lg:flex hidden '></div>
           </div>
   
