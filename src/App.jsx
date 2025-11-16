@@ -15,12 +15,13 @@ function App() {
   const divRef = useRef(null);
   const [play, setPlay] = useState(false);
   const audioRef = useRef(select);
+  const [message, setMessage] = useState(0);
 
   useEffect(() => {
     const getEnemies = async () => {
 
       try {
-        const EXPIRATION_TIME = 72 * 60 * 60 * 1000;
+        const EXPIRATION_TIME = 720 * 60 * 60 * 1000;
         const cachedData = localStorage.getItem("enemies");
         const cachedTime = localStorage.getItem("enemies_timestamp");
 
@@ -101,7 +102,7 @@ function App() {
 
   }
 
-  useGamepadForEnemies({ enemies, active, setActive, divRef, ativar, setPlay});
+  useGamepadForEnemies({ enemies, active, setActive, divRef, ativar, setPlay, setMessage, message});
 
   
   const scrollPagination = (d) => {
@@ -139,10 +140,14 @@ function App() {
       </main>
     );
   }
-
   
   return (
     <>
+      {message === 1 && 
+        <span className='fixed bottom-4 left-4 bg-green-400/70 backdrop-blur-sm text-white px-4 py-2 rounded-md z-999 font-[calibri]'>
+          Gamepad connected! Use the D-Pad or analog stick to navigate.
+        </span>
+      }
       {play && <audio src={select} autoPlay className='absolute opacity-0' ref={audioRef}></audio>}
 
       <main className='flex gap-8 w-full lg:px-12 px-2 h-full items-center justify-center lg:flex-row flex-col relative'>
