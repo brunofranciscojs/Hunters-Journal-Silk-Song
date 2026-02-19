@@ -19,6 +19,57 @@ function App() {
   const [notifPermission, setNotifPermission] = useState(
     typeof Notification !== 'undefined' ? Notification.permission : 'denied'
   );
+  const [installPrompt, setInstallPrompt] = useState(null);
+  const [showInstallBanner, setShowInstallBanner] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
+
+  // Detecta PWA install prompt
+  useEffect(() => {
+    // Já instalado ou já recusou?
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    const dismissed = localStorage.getItem('install_dismissed');
+    if (isStandalone || dismissed) return;
+
+    // iOS/iPad detection
+    const iosDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    if (iosDevice) {
+      setIsIOS(true);
+      setShowInstallBanner(true);
+      return;
+    }
+
+    // Android/Chrome: captura o evento nativo
+    const handler = (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+      setShowInstallBanner(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstall = async () => {
+    if (isIOS) {
+      // No iOS não dá pra trigger programático, banner já mostra instrução
+      return;
+    }
+    if (installPrompt) {
+      installPrompt.prompt();
+      const { outcome } = await installPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setShowInstallBanner(false);
+      }
+      setInstallPrompt(null);
+    }
+  };
+
+  const dismissInstall = () => {
+    setShowInstallBanner(false);
+    localStorage.setItem('install_dismissed', 'true');
+  };
 
   useEffect(() => {
     const getEnemies = async () => {
@@ -166,6 +217,39 @@ function App() {
 
   return (
     <>
+      {/* Banner de instalação PWA */}
+      {showInstallBanner && (
+        <div className='fixed top-0 left-0 right-0 z-9999 bg-linear-to-r from-[#2a2a3a] to-[#1a1a2e] border-b border-white/10 px-4 py-3 flex items-center justify-between gap-4 shadow-lg font-[calibri]'>
+          <div className='flex items-center gap-3 text-white'>
+            <span className='text-2xl'>📱</span>
+            {isIOS ? (
+              <span className='text-sm'>
+                Instale o app: toque em <strong>Compartilhar</strong> <span className='text-lg'>⬆️</span> e depois <strong>"Adicionar à Tela de Início"</strong>
+              </span>
+            ) : (
+              <span className='text-sm'>Instale o <strong>Hunter's Journal</strong> no seu dispositivo!</span>
+            )}
+          </div>
+          <div className='flex gap-2 shrink-0'>
+            {!isIOS && (
+              <button
+                onClick={handleInstall}
+                className='bg-white/20 hover:bg-white/30 text-white text-sm px-4 py-1.5 rounded-md transition-colors cursor-pointer font-semibold'
+              >
+                Instalar
+              </button>
+            )}
+            <button
+              onClick={dismissInstall}
+              className='text-white/50 hover:text-white text-lg cursor-pointer px-2'
+              title='Fechar'
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       {message === 1 &&
         <span className='fixed bottom-4 left-4 bg-green-400/70 backdrop-blur-sm text-white px-4 py-2 rounded-md z-999 font-[calibri]'>
           Gamepad connected! Use the D-Pad or analog stick to navigate.
